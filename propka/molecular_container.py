@@ -12,7 +12,7 @@ import propka.pdb, propka.version, propka.output, propka.conformation_container,
 
 class Molecular_container:
     def __init__(self, input_file, options=None, writeout=True):
-        # printing out header before parsing input
+        # #printing out header before parsing input
         propka.output.printHeader()
 
         # set up some values
@@ -39,7 +39,7 @@ class Molecular_container:
             # read in atoms and top up containers to make sure that all atoms are present in all conformations
             [self.conformations, self.conformation_names] = propka.pdb.read_pdb(input_file, self.version.parameters,self)
             if len(self.conformations)==0:
-                print('Error: The pdb file does not seems to contain any molecular conformations')
+                #print('Error: The pdb file does not seems to contain any molecular conformations')
                 sys.exit(-1)
 
             self.top_up_conformations()
@@ -77,7 +77,7 @@ class Molecular_container:
             self.additional_setup_when_reading_input_file()
 
         else:
-            print('Unrecognized input file:%s'%input_file)
+            #print('Unrecognized input file:%s'%input_file)
             sys.exit(-1)
 
 
@@ -91,14 +91,14 @@ class Molecular_container:
         return
 
     def find_covalently_coupled_groups(self):
-        print('-'*103)
+        #print('-'*103)
         for name in self.conformation_names:
             self.conformations[name].find_covalently_coupled_groups()
 
         return
 
     def find_non_covalently_coupled_groups(self):
-        print('-'*103)
+        #print('-'*103)
         for name in self.conformation_names:
             self.conformations[name].find_non_covalently_coupled_groups(verbose=self.options.display_coupled_residues)
 
@@ -129,7 +129,7 @@ class Molecular_container:
         # find the average of the conformations
         self.average_of_conformations()
 
-        # print out the conformation-average results
+        # #print out the conformation-average results
         propka.output.printResult(self, 'AVR', self.version.parameters)
 
         return
@@ -150,7 +150,8 @@ class Molecular_container:
                 if group_to_add:
                     avr_group += group_to_add
                 else:
-                    print('Warning: Group %s could not be found in conformation %s.'%(group.atom.residue_label, name))
+                    pass
+                    #print('Warning: Group %s could not be found in conformation %s.'%(group.atom.residue_label, name))
             # ... and store the average value
             avr_group = avr_group / len(self.conformation_names)
             avr_conformation.groups.append(avr_group)
@@ -193,7 +194,7 @@ class Molecular_container:
         profile = []
         for ph in propka.lib.make_grid(*grid):
             ddg = self.conformations[conformation].calculate_folding_energy( pH=ph, reference=reference)
-            #print(ph,ddg)
+            ##print(ph,ddg)
             profile.append([ph, ddg])
 
         # find optimum
@@ -226,7 +227,7 @@ class Molecular_container:
         return charge_profile
 
     def getPI(self, conformation='AVR', grid=[0., 14., 1], iteration=0):
-        #print('staring',grid, iteration)
+        ##print('staring',grid, iteration)
         # search
         charge_profile = self.getChargeProfile(conformation=conformation, grid=grid)
         pi = []

@@ -47,7 +47,7 @@ class vector:
         elif type(other) in [int, float]:
             return vector(self.x * other, self.y * other, self.z * other)
         else:
-            print('%s not supported'%type(other))
+            #print('%s not supported'%type(other))
             raise TypeError
 
     def __rmul__(self,other):

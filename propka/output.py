@@ -9,13 +9,13 @@ import propka.lib
 
 def printHeader():
     """
-    prints the header section
+    #prints the header section
     """
     str  = "%s\n" % ( getPropkaHeader() )
     str += "%s\n" % ( getReferencesHeader() )
     str += "%s\n" % ( getWarningHeader() )
 
-    print(str)
+    #print(str)
 
 
 def writePDB(protein, file=None, filename=None, include_hydrogens=False, options=None):
@@ -28,7 +28,7 @@ def writePDB(protein, file=None, filename=None, include_hydrogens=False, options
       if filename == None:
         filename = "%s.pdb" % (protein.name)
       file = open(filename, 'w')
-      print("writing pdbfile %s" % (filename))
+      #print("writing pdbfile %s" % (filename))
       close_file = True
     else:
       # don't close the file, it was opened in a different place
@@ -40,7 +40,7 @@ def writePDB(protein, file=None, filename=None, include_hydrogens=False, options
         if residue.resName not in ["N+ ", "C- "]:
           for atom in residue.atoms:
             if include_hydrogens == False and atom.name[0] == "H":
-              """ don't print """
+              """ don't #print """
             else:
               numb += 1
               line = atom.makePDBLine(numb=numb)
@@ -59,8 +59,8 @@ def writePKA(protein, parameters, filename=None, conformation ='1A',reference="n
     if filename == None:
       filename = "%s.pka" % (protein.name)
     file = open(filename, 'w')
-    if verbose == True:
-      print("Writing %s" % (filename))
+#    if verbose == True:
+      #print("Writing %s" % (filename))
 
     # writing propka header
     str  = "%s\n" % ( getPropkaHeader() )
@@ -74,10 +74,10 @@ def writePKA(protein, parameters, filename=None, conformation ='1A',reference="n
     str += getSummarySection(protein,conformation,parameters)
     str += "%s\n" % ( getTheLine() )
 
-    # printing Folding Profile
+    # #printing Folding Profile
     str += getFoldingProfileSection(protein, conformation=conformation, reference=reference, direction=direction, window=[0., 14., 1.0], options=options)
 
-    # printing Protein Charge Profile
+    # #printing Protein Charge Profile
     str += getChargeProfileSection(protein, conformation=conformation)
 
     # now, writing the pka text to file
@@ -88,7 +88,7 @@ def writePKA(protein, parameters, filename=None, conformation ='1A',reference="n
 
 def printTmProfile(protein, reference="neutral", window=[0., 14., 1.], Tm=[0.,0.], Tms=None, ref=None, verbose=False, options=None):
     """
-    prints Tm profile
+    #prints Tm profile
     """
     profile = protein.getTmProfile(reference=reference, grid=[0., 14., 0.1], Tms=Tms, ref=ref, options=options)
     if profile == None:
@@ -98,35 +98,35 @@ def printTmProfile(protein, reference="neutral", window=[0., 14., 1.], Tm=[0.,0.
       for (pH, Tm) in profile:
         if pH >= window[0] and pH <= window[1] and (pH%window[2] < 0.01 or pH%window[2] > 0.99*window[2]):
           str += "%6.2lf%10.2lf\n" % (pH, Tm)
-      print(str)
+      #print(str)
 
 
 def printResult(protein, conformation, parameters):
     """
-    prints all resulting output from determinants and down
+    #prints all resulting output from determinants and down
     """
-    printPKASection(protein, conformation, parameters)
+    #printPKASection(protein, conformation, parameters)
 
 
 def printPKASection(protein, conformation, parameters):
     """
-    prints out the pka-section of the result
+    #prints out the pka-section of the result
     """
     # geting the determinants section
     str = getDeterminantSection(protein, conformation, parameters)
-    print(str)
+    #print(str)
 
     str = getSummarySection(protein,conformation,parameters)
-    print(str)
+    #print(str)
 
 
 def getDeterminantSection(protein, conformation, parameters):
     """
-    prints out the pka-section of the result
+    #prints out the pka-section of the result
     """
     # getting the same order as in propka2.0
     str  = "%s\n" % ( getDeterminantsHeader() )
-    # printing determinants
+    # #printing determinants
     for chain in protein.conformations[conformation].chains:
         for residue_type in parameters.write_out_order:
             groups = [g for g in protein.conformations[conformation].groups if g.atom.chainID == chain]
@@ -143,10 +143,10 @@ def getDeterminantSection(protein, conformation, parameters):
 
 def getSummarySection(protein, conformation, parameters):
     """
-    prints out the pka-section of the result
+    #prints out the pka-section of the result
     """
     str  = "%s\n" % ( getSummaryHeader() )
-    # printing pKa summary
+    # #printing pKa summary
     for residue_type in parameters.write_out_order:
         for group in protein.conformations[conformation].groups:
           if group.residue_type == residue_type:

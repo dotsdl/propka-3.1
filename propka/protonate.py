@@ -240,8 +240,8 @@ class Protonate:
         self.display('PROTONATING',atom)
         if atom.steric_number in list(self.protonation_methods.keys()):
             self.protonation_methods[atom.steric_number](atom)
-        else:
-            print('Warning: Do not have a method for protonating',atom,'(steric number: %d)'%atom.steric_number)
+        #else:
+        #    #print('Warning: Do not have a method for protonating',atom,'(steric number: %d)'%atom.steric_number)
 
         return
 
@@ -406,8 +406,8 @@ class Protonate:
         d = 1.0
         if element in list(self.bond_lengths.keys()):
             d = self.bond_lengths[element]
-        else:
-            print('WARNING: Bond length for %s not found, using the standard value of %f'%(element, d))
+        #else:
+            #print('WARNING: Bond length for %s not found, using the standard value of %f'%(element, d))
 
         a = a.rescale(d)
 
@@ -418,7 +418,7 @@ class Protonate:
             s = ''
             for t in text:
                 s+='%s '%t
-            print(s)
+            #print(s)
         return
 
 
@@ -426,12 +426,12 @@ if __name__ == '__main__':
     import protein, pdb, sys,os
     arguments = sys.argv
     if len(arguments) != 2:
-        print('Usage: protonate.py <pdb_file>')
+        #print('Usage: protonate.py <pdb_file>')
         sys.exit(0)
 
     filename = arguments[1]
     if not os.path.isfile(filename):
-        print('Error: Could not find \"%s\"'%filename)
+        #print('Error: Could not find \"%s\"'%filename)
         sys.exit(1)
 
 

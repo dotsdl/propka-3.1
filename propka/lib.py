@@ -177,7 +177,7 @@ def loadOptions(*args, **kwargs):
     parser.add_option("-s", "--silent",  dest="verbose", action="store_false",
            help="not activated yet")
     parser.add_option("--verbosity",  dest="verbosity", action="store_const",
-           help="level of printout - not activated yet")
+           help="level of #printout - not activated yet")
     parser.add_option("-o", "--pH", dest="pH", type="float", default=7.0,
            help="setting pH-value used in e.g. stability calculations [7.0]")
     parser.add_option("-w", "--window", dest="window", nargs=3, type="float", default=(0.0, 14.0, 1.0),
@@ -208,13 +208,14 @@ def loadOptions(*args, **kwargs):
 
     # adding specified filenames to arguments
     if options.filenames:
-      for filename in options.filenames:
-        args.append(filename)
+        for filename in options.filenames:
+            args.append(filename)
 
     # checking at early stage that there is at least one pdbfile to work with
     if len(args) == 0:
-      print("Warning: no pdbfile provided")
-      #sys.exit(9)
+        pass
+        #print("Warning: no pdbfile provided")
+        #sys.exit(9)
 
     # Convert titrate_only string to a list of (chain, resnum) items:
     if options.titrate_only is not None:
@@ -223,7 +224,7 @@ def loadOptions(*args, **kwargs):
             try:
                 chain, resnum, inscode = parse_res_string(res_str)
             except ValueError:
-                print('Invalid residue string: "%s"' % res_str)
+                #print('Invalid residue string: "%s"' % res_str)
                 sys.exit(1)
             res_list.append((chain, resnum, inscode))
         options.titrate_only = res_list
@@ -237,7 +238,7 @@ def loadOptions(*args, **kwargs):
 
 def makeTidyAtomLabel(name,element):
     """
-    Returns a 'tidier' atom label for printing the new pdbfile
+    Returns a 'tidier' atom label for #printing the new pdbfile
     """
 
     if len(name)>4:# if longer than 4, just truncate the name

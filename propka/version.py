@@ -109,7 +109,7 @@ class simple_hb(version_A):
     def __init__(self, parameters):
         # set the calculation rutines used in this version
         version_A.__init__(self, parameters)
-        print('Using simple hb model')
+        #print('Using simple hb model')
         return
 
     def get_hydrogen_bond_parameters(self, atom1, atom2):
@@ -126,7 +126,7 @@ class element_based_ligand_interactions(version_A):
     def __init__(self, parameters):
         # set the calculation rutines used in this version
         version_A.__init__(self, parameters)
-        print('Using detailed SC model!')
+        #print('Using detailed SC model!')
         return
 
     def get_hydrogen_bond_parameters(self, atom1, atom2):
@@ -167,9 +167,9 @@ class element_based_ligand_interactions(version_A):
                 else: elements.append(a.element)
 
             res = self.parameters.hydrogen_bonds.get_value(elements[0], elements[1])
-            if not res:
-                print('Could not determine backbone interaction parameters for:',
-                      backbone_atom,atom)
+#            if not res:
+                #print('Could not determine backbone interaction parameters for:',
+#                      backbone_atom,atom)
 
             return
 

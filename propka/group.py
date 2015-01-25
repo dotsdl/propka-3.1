@@ -349,7 +349,7 @@ class Group:
         if self.residue_type in self.parameters.ions.keys():
             self.charge = self.parameters.ions[self.residue_type]
 
-        #print('ION setup',self,self.residue_type, self.charge)
+        ##print('ION setup',self,self.residue_type, self.charge)
 
         # find the center and the interaction atoms
         self.setup_atoms()
@@ -395,22 +395,22 @@ class Group:
                     if len([a for a in found if a.element==e]) != expect[self.type][e]:
                         ok = False
 
-        if not ok:
-            print('Warning: Missing atoms or failed protonation for %s (%s) -- please check the structure'%(self.label, self.type))
-            print('         %s'%self)
-            Na = sum([expected_atoms_acid_interactions[self.type][e] for e in expected_atoms_acid_interactions[self.type].keys()])
-            Nb = sum([expected_atoms_base_interactions[self.type][e] for e in expected_atoms_base_interactions[self.type].keys()])
+        #if not ok:
+        #    #print('Warning: Missing atoms or failed protonation for %s (%s) -- please check the structure'%(self.label, self.type))
+        #    #print('         %s'%self)
+        #    Na = sum([expected_atoms_acid_interactions[self.type][e] for e in expected_atoms_acid_interactions[self.type].keys()])
+        #    Nb = sum([expected_atoms_base_interactions[self.type][e] for e in expected_atoms_base_interactions[self.type].keys()])
 
-            print('         Expected %d interaction atoms for acids, found:'%Na)
-            for i in range(len(self.interaction_atoms_for_acids)):
-                 print('             %s'%self.interaction_atoms_for_acids[i])
+        #    #print('         Expected %d interaction atoms for acids, found:'%Na)
+        #    for i in range(len(self.interaction_atoms_for_acids)):
+        #         #print('             %s'%self.interaction_atoms_for_acids[i])
 
-            print('         Expected %d interaction atoms for bases, found:'%Nb)
-            for i in range(len(self.interaction_atoms_for_bases)):
-                 print('             %s'%self.interaction_atoms_for_bases[i])
+        #    #print('         Expected %d interaction atoms for bases, found:'%Nb)
+        #    for i in range(len(self.interaction_atoms_for_bases)):
+        #         #print('             %s'%self.interaction_atoms_for_bases[i])
 
 
-                    #return
+        #            #return
 
         return
 
@@ -647,8 +647,8 @@ class HIS_group(Group):
     def setup_atoms(self):
         # Find the atoms in the histidine ring
         ring_atoms = propka.ligand.is_ring_member(self.atom)
-        if len(ring_atoms) != 5:
-            print('Warning: His group does not seem to contain a ring',self)
+        #if len(ring_atoms) != 5:
+            #print('Warning: His group does not seem to contain a ring',self)
 
         # protonate ring
         for r in ring_atoms:
@@ -832,7 +832,7 @@ class NAR_group(Group):
         Group.__init__(self,atom)
         self.type = 'NAR'
         self.residue_type = 'NAR'
-        print('Found NAR group:',atom)
+        #print('Found NAR group:',atom)
         return
 
 
@@ -855,7 +855,7 @@ class NAM_group(Group):
         Group.__init__(self,atom)
         self.type = 'NAM'
         self.residue_type = 'NAM'
-        print('Found NAM group:',atom)
+        #print('Found NAM group:',atom)
         return
 
 
@@ -876,7 +876,7 @@ class F_group(Group):
         Group.__init__(self,atom)
         self.type = 'F'
         self.residue_type = 'F'
-        print('Found F   group:',atom)
+        #print('Found F   group:',atom)
         return
 
 class Cl_group(Group):
@@ -884,7 +884,7 @@ class Cl_group(Group):
         Group.__init__(self,atom)
         self.type = 'Cl'
         self.residue_type = 'Cl'
-        print('Found Cl   group:',atom)
+        #print('Found Cl   group:',atom)
         return
 
 class OH_group(Group):
@@ -892,7 +892,7 @@ class OH_group(Group):
         Group.__init__(self,atom)
         self.type = 'OH'
         self.residue_type = 'OH'
-        print('Found OH  group:',atom)
+        #print('Found OH  group:',atom)
         return
 
 
@@ -911,7 +911,7 @@ class OP_group(Group):
         Group.__init__(self,atom)
         self.type = 'OP'
         self.residue_type = 'OP'
-        print('Found OP  group:',atom)
+        #print('Found OP  group:',atom)
         return
 
 
@@ -932,7 +932,7 @@ class O3_group(Group):
         Group.__init__(self,atom)
         self.type = 'O3'
         self.residue_type = 'O3'
-        print('Found O3  group:',atom)
+        #print('Found O3  group:',atom)
         return
 
 
@@ -941,7 +941,7 @@ class O2_group(Group):
         Group.__init__(self,atom)
         self.type = 'O2'
         self.residue_type = 'O2'
-        print('Found O2  group:',atom)
+        #print('Found O2  group:',atom)
         return
 
 class SH_group(Group):
@@ -949,7 +949,7 @@ class SH_group(Group):
         Group.__init__(self,atom)
         self.type = 'SH'
         self.residue_type = 'SH'
-        print('Found SH  group:',atom)
+        #print('Found SH  group:',atom)
         return
 
 
@@ -959,7 +959,7 @@ class CG_group(Group):
         Group.__init__(self,atom)
         self.type = 'CG'
         self.residue_type = 'CG'
-        print('Found CG  group:',atom)
+        #print('Found CG  group:',atom)
         return
 
     def setup_atoms(self):
@@ -983,7 +983,7 @@ class C2N_group(Group):
         Group.__init__(self,atom)
         self.type = 'C2N'
         self.residue_type = 'C2N'
-        print('Found C2N group:',atom)
+        #print('Found C2N group:',atom)
         return
 
     def setup_atoms(self):
@@ -1007,7 +1007,7 @@ class OCO_group(Group):
         Group.__init__(self,atom)
         self.type = 'OCO'
         self.residue_type = 'OCO'
-        print('Found OCO group:',atom)
+        #print('Found OCO group:',atom)
         return
 
     def setup_atoms(self):
@@ -1026,7 +1026,7 @@ class N30_group(Group):
         Group.__init__(self,atom)
         self.type = 'N30'
         self.residue_type = 'N30'
-        print('Found N30 group:',atom)
+        #print('Found N30 group:',atom)
         return
 
     def setup_atoms(self):
@@ -1043,7 +1043,7 @@ class N31_group(Group):
         Group.__init__(self,atom)
         self.type = 'N31'
         self.residue_type = 'N31'
-        print('Found N31 group:',atom)
+        #print('Found N31 group:',atom)
         return
 
     def setup_atoms(self):
@@ -1060,7 +1060,7 @@ class N32_group(Group):
         Group.__init__(self,atom)
         self.type = 'N32'
         self.residue_type = 'N32'
-        print('Found N32 group:',atom)
+        #print('Found N32 group:',atom)
         return
 
     def setup_atoms(self):
@@ -1077,7 +1077,7 @@ class N33_group(Group):
         Group.__init__(self,atom)
         self.type = 'N33'
         self.residue_type = 'N33'
-        print('Found N33 group:',atom)
+        #print('Found N33 group:',atom)
         return
 
     def setup_atoms(self):
@@ -1094,7 +1094,7 @@ class NP1_group(Group):
         Group.__init__(self,atom)
         self.type = 'NP1'
         self.residue_type = 'NP1'
-        print('Found NP1 group:',atom)
+        #print('Found NP1 group:',atom)
         return
 
 
@@ -1112,7 +1112,7 @@ class N1_group(Group):
         Group.__init__(self,atom)
         self.type = 'N1'
         self.residue_type = 'N1'
-        print('Found N1 group:',atom)
+        #print('Found N1 group:',atom)
         return
 
 
@@ -1122,7 +1122,7 @@ class Ion_group(Group):
         Group.__init__(self,atom)
         self.type = 'ION'
         self.residue_type = atom.resName.strip()
-        print('Found ion group:',atom)
+        #print('Found ion group:',atom)
         return
 
 
@@ -1131,7 +1131,7 @@ class non_titratable_ligand_group(Group):
         Group.__init__(self, atom)
         self.type = 'LG'
         self.residue_type = 'LG'
-#        print('Non-titratable ligand group',atom)
+#        #print('Non-titratable ligand group',atom)
         return
 
 class titratable_ligand_group(Group):
@@ -1153,7 +1153,7 @@ class titratable_ligand_group(Group):
         # this is not true if we are reading an input file
         if atom.marvin_pka:
             self.model_pka = atom.marvin_pka
-            print('Titratable ligand group    ',atom, self.model_pka, self.charge)
+            #print('Titratable ligand group    ',atom, self.model_pka, self.charge)
         self.model_pka_set = True
 
         return

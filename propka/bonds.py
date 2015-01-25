@@ -111,14 +111,14 @@ class bondmaker:
         """ Finds bonds proteins based on the way atoms
         normally bond in proteins"""
 
-        print('++++ Side chains ++++')
+        #print('++++ Side chains ++++')
         # side chains
         for chain in protein.chains:
             for residue in chain.residues:
                 if residue.resName.replace(' ','') not in ['N+','C-']:
                     self.find_bonds_for_side_chain(residue.atoms)
 
-        print('++++ Backbones ++++')
+        ##print('++++ Backbones ++++')
         # backbone
         last_residues = []
         for chain in protein.chains:
@@ -128,12 +128,12 @@ class bondmaker:
                         self.connect_backbone(chain.residues[i-1], chain.residues[i])
                         last_residues.append(chain.residues[i])
 
-        print('++++ terminal oxygen ++++')
+        #print('++++ terminal oxygen ++++')
         # terminal OXT
         for last_residue in last_residues:
             self.find_bonds_for_terminal_oxygen(last_residue)
 
-        print('++++ cysteines ++++')
+        #print('++++ cysteines ++++')
         # Cysteines
         for chain in protein.chains:
             for i in range(0,len(chain.residues)):
@@ -349,7 +349,7 @@ class bondmaker:
         ylen = ymax-ymin
         zlen = zmax-zmin
 
-        #print('x range: [%6.2f;%6.2f] %6.2f'%(xmin,xmax,xlen))
+        ##print('x range: [%6.2f;%6.2f] %6.2f'%(xmin,xmax,xlen))
         #print('y range: [%6.2f;%6.2f] %6.2f'%(ymin,ymax,ylen))
         #print('z range: [%6.2f;%6.2f] %6.2f'%(zmin,zmax,zlen))
 
@@ -465,12 +465,12 @@ if __name__ == '__main__':
     import protein, pdb, sys,os
     arguments = sys.argv
     if len(arguments) != 2:
-        print('Usage: bonds.py <pdb_file>')
+        #print('Usage: bonds.py <pdb_file>')
         sys.exit(0)
 
     filename = arguments[1]
     if not os.path.isfile(filename):
-        print('Error: Could not find \"%s\"'%filename)
+        #print('Error: Could not find \"%s\"'%filename)
         sys.exit(1)
 
     pdblist = pdb.readPDB(filename)

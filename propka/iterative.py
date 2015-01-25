@@ -178,7 +178,7 @@ def addDeterminants(iterative_interactions, version, options=None):
         pair = interaction[0]
         for group in pair:
             if group in done_group:
-                #print "done already"
+                ##print "done already"
                 """ do nothing - already have an iterative object for this group """
             else:
                 newIterative = Iterative(group)
@@ -186,8 +186,8 @@ def addDeterminants(iterative_interactions, version, options=None):
                 done_group.append(group)
 
     # Initialize iterative scheme
-    if options.verbose == True:
-      print("\n   --- pKa iterations (%d groups, %d interactions) ---" % ( len(iteratives), len(iterative_interactions) ))
+    #if options.verbose == True:
+      #print("\n   --- pKa iterations (%d groups, %d interactions) ---" % ( len(iteratives), len(iterative_interactions) ))
     converged = False
     iteration = 0
     # set non-iterative pka values as first step
@@ -210,7 +210,7 @@ def addDeterminants(iterative_interactions, version, options=None):
         pair   = interaction[0]
         values = interaction[1]
         annihilation = interaction[2]
-        #print "len(interaction) = %d" % (len(interaction))
+        ##print "len(interaction) = %d" % (len(interaction))
         object1, object2 = findIterative(pair, iteratives)
         Q1 = object1.Q
         Q2 = object2.Q
@@ -246,30 +246,30 @@ def addDeterminants(iterative_interactions, version, options=None):
         itres.pKa_iter.append(itres.pKa_new)
 
       if iteration == 10:
-          print("did not converge in %d iterations" % (iteration))
+          #print("did not converge in %d iterations" % (iteration))
           break
 
     # --- Iterations finished ---
 
-    # printing pKa iterations
+    # #printing pKa iterations
     if options.verbose == True:
       str = "%12s" % (" ")
       for index in range(0, iteration+1 ):
         str += "%8d" % (index)
-      print(str)
+      #print(str)
       for itres in iteratives:
         str  = "%s   " % (itres.label)
         for pKa in itres.pKa_iter:
           str += "%8.2lf" % (pKa)
         if itres.converged == False:
           str += " *"
-        print(str)
+        #print(str)
 
     # creating real determinants and adding them to group object
     for itres in iteratives:
         for type in ['sidechain','backbone','coulomb']:
             for interaction in itres.determinants[type]:
-                #print('done',itres.group.label,interaction[0],interaction[1])
+                ##print('done',itres.group.label,interaction[0],interaction[1])
                 value = interaction[1]
                 if value > 0.005 or value < -0.005:
                     g = interaction[0]
@@ -304,7 +304,7 @@ class Iterative:
         Contructer of the iterative object
         """
 
-        #print "creating 'iterative object' for %s" % (group.label)
+        ##print "creating 'iterative object' for %s" % (group.label)
 
         self.label    = group.label
         self.atom     = group.atom
